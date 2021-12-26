@@ -1,5 +1,6 @@
 package com.bridgelabz.employeepayrollapp.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 import com.bridgelabz.employeepayrollapp.dto.EmployeePayRollDTO;
 import com.bridgelabz.employeepayrollapp.dto.ResponseDTO;
 import com.bridgelabz.employeepayrollapp.models.EmployeePayRollData;
+import com.bridgelabz.employeepayrollapp.services.IEmployeePayRollServices;
 
 
 /**
@@ -26,6 +30,9 @@ import com.bridgelabz.employeepayrollapp.models.EmployeePayRollData;
 @RestController
 @RequestMapping("/employeepayroll")
 public class EmployeePayRollController {
+
+	@Autowired
+	private IEmployeePayRollServices employeePayRollServices;
 	/**
 	 * This Rest API method is used to get 
 	 * whether its connected or not
@@ -33,8 +40,9 @@ public class EmployeePayRollController {
 	 */
 	@RequestMapping("/get")
 	public ResponseEntity<ResponseDTO> employeePayRoll(){
-		EmployeePayRollData empData = new EmployeePayRollData(1,new EmployeePayRollDTO("kiran", 30000));
-		ResponseDTO responseDTO = new ResponseDTO("Get call Successful", empData);
+		List<EmployeePayRollData> empDataList = null;
+		empDataList = employeePayRollServices.getEmployeeData();
+		ResponseDTO responseDTO = new ResponseDTO("Get call Successful", empDataList);
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
 	}
 	
@@ -46,7 +54,8 @@ public class EmployeePayRollController {
 	 */
 	@GetMapping("/get/{id}")
 	public ResponseEntity<ResponseDTO> employeePayRollById(@PathVariable ("id") int id){
-		EmployeePayRollData empData = new EmployeePayRollData(id,new EmployeePayRollDTO("kiran", 30000));
+		EmployeePayRollData empData = null;
+		empData = employeePayRollServices.getEmployeeDataById(id);
 		ResponseDTO responseDTO = new ResponseDTO("Get call for id Successful", empData);
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
 	}
@@ -59,7 +68,8 @@ public class EmployeePayRollController {
 	 */
 	@PostMapping("/post")
 	public ResponseEntity<ResponseDTO> addEmployeePayRollData(@RequestBody EmployeePayRollDTO emp){
-		EmployeePayRollData empData = new EmployeePayRollData(2, emp);
+		EmployeePayRollData empData = null;
+		empData = employeePayRollServices.addEmployeeData(emp);
 		ResponseDTO responseDTO = new ResponseDTO("post data is Successful", empData);
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
 	}
@@ -71,7 +81,8 @@ public class EmployeePayRollController {
 	 */
 	@PutMapping("/put")
 	public ResponseEntity<ResponseDTO> updatingEmployeePayRollData(@RequestBody EmployeePayRollDTO emp){
-		EmployeePayRollData empData = new EmployeePayRollData(2, emp);
+		EmployeePayRollData empData = null;
+		empData = employeePayRollServices.updateEmployeeData(emp);
 		ResponseDTO responseDTO = new ResponseDTO("put or update data is Successful", empData);
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
 	}
@@ -83,7 +94,8 @@ public class EmployeePayRollController {
 	 */
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<ResponseDTO> deleteEmployeePayRollById(@PathVariable ("id") int id){
-		ResponseDTO responseDTO = new ResponseDTO("delete data is Successful", id);
+		employeePayRollServices.deleteEmployeeData(id);
+		ResponseDTO responseDTO = new ResponseDTO("delete data is Successful of id :", id);
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
 	}
 	
