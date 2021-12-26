@@ -79,10 +79,10 @@ public class EmployeePayRollController {
 	 * @param emp it is the parameter that we pass as an body
 	 * @return Response : with a String + emp and OK status
 	 */
-	@PutMapping("/put")
-	public ResponseEntity<ResponseDTO> updatingEmployeePayRollData(@RequestBody EmployeePayRollDTO emp){
+	@PutMapping("/put/{id}")
+	public ResponseEntity<ResponseDTO> updatingEmployeePayRollData(@PathVariable("id") int id, @RequestBody EmployeePayRollDTO emp){
 		EmployeePayRollData empData = null;
-		empData = employeePayRollServices.updateEmployeeData(emp);
+		empData = employeePayRollServices.updateEmployeeData(id,emp);
 		ResponseDTO responseDTO = new ResponseDTO("put or update data is Successful", empData);
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
 	}

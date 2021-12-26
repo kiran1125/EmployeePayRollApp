@@ -10,38 +10,37 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmployeePayRollService implements IEmployeePayRollServices{
+    List<EmployeePayRollData> empDataList = new ArrayList<>();
 
     @Override
     public List<EmployeePayRollData> getEmployeeData() {
-        List<EmployeePayRollData> empDataList = new ArrayList<>();
-        empDataList.add( new EmployeePayRollData(1, new EmployeePayRollDTO("kiran", 30000)));
         return empDataList;
     }
-
-    @Override
-    public EmployeePayRollData getEmployeeDataById(int id) {
-        EmployeePayRollData empData = null;
-        empData = new EmployeePayRollData(id, new EmployeePayRollDTO("kiran", 30000));
-        return empData;
-    }
-
     @Override
     public EmployeePayRollData addEmployeeData(EmployeePayRollDTO emp) {
         EmployeePayRollData empData = null;
-        empData = new EmployeePayRollData(1, emp);
+        empData = new EmployeePayRollData(empDataList.size() + 1, emp);
+        empDataList.add(empData);
         return empData;
     }
 
     @Override
-    public EmployeePayRollData updateEmployeeData(EmployeePayRollDTO emp) {
+    public EmployeePayRollData updateEmployeeData(int id ,EmployeePayRollDTO emp) {
         EmployeePayRollData empData = null;
-        empData = new EmployeePayRollData(1, emp);
+        empData = new EmployeePayRollData(id, emp);
+        empDataList.add(empData);
         return empData;
     }
 
     @Override
     public void deleteEmployeeData(int id) {
-         
+        empDataList.remove(id);
+    }
+
+
+    @Override
+    public EmployeePayRollData getEmployeeDataById(int id) {
+        return empDataList.get(id);
     }
     
 }
