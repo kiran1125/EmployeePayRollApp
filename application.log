@@ -1,0 +1,6 @@
+2021-12-27 20:31:12.334  INFO 17552 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Starting EmployeePayRollAppApplication using Java 17.0.1 on Kiran with PID 17552 (E:\Spring\EmployeePayRollApp\target\classes started by Ki ran in E:\Spring\EmployeePayRollApp)
+2021-12-27 20:31:12.344 DEBUG 17552 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Running with Spring Boot v2.6.2, Spring v5.3.14
+2021-12-27 20:31:12.390  INFO 17552 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : No active profile set, falling back to default profiles: default
+2021-12-27 20:31:19.097  WARN 17552 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-27 20:31:19.846  INFO 17552 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Started EmployeePayRollAppApplication in 8.399 seconds (JVM running for 9.488)
+2021-12-27 20:31:19.854  INFO 17552 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Employee Payroll App Started in COMMON Environment
