@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.bridgelabz.employeepayrollapp.dto.EmployeePayRollDTO;
 import com.bridgelabz.employeepayrollapp.dto.ResponseDTO;
 import com.bridgelabz.employeepayrollapp.models.EmployeePayRollData;
@@ -67,7 +69,7 @@ public class EmployeePayRollController {
 	 * @return Response : with a String + emp and OK status
 	 */
 	@PostMapping("/post")
-	public ResponseEntity<ResponseDTO> addEmployeePayRollData(@RequestBody EmployeePayRollDTO emp){
+	public ResponseEntity<ResponseDTO> addEmployeePayRollData(@Valid @RequestBody EmployeePayRollDTO emp){
 		EmployeePayRollData empData = null;
 		empData = employeePayRollServices.addEmployeeData(emp);
 		ResponseDTO responseDTO = new ResponseDTO("post data is Successful", empData);
@@ -80,7 +82,7 @@ public class EmployeePayRollController {
 	 * @return Response : with a String + emp and OK status
 	 */
 	@PutMapping("/put/{id}")
-	public ResponseEntity<ResponseDTO> updatingEmployeePayRollData(@PathVariable("id") int id, @RequestBody EmployeePayRollDTO emp){
+	public ResponseEntity<ResponseDTO> updatingEmployeePayRollData(@PathVariable("id") int id, @Valid @RequestBody EmployeePayRollDTO emp){
 		EmployeePayRollData empData = null;
 		empData = employeePayRollServices.updateEmployeeData(id,emp);
 		ResponseDTO responseDTO = new ResponseDTO("put or update data is Successful", empData);
