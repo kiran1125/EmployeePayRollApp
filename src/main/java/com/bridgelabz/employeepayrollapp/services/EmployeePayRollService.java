@@ -28,7 +28,7 @@ public class EmployeePayRollService implements IEmployeePayRollServices{
     public EmployeePayRollData updateEmployeeData(int id ,EmployeePayRollDTO emp) {
         EmployeePayRollData empData = null;
         empData = new EmployeePayRollData(id, emp);
-        empDataList.add(empData);
+        empDataList.set((id-1),empData);
         return empData;
     }
 
