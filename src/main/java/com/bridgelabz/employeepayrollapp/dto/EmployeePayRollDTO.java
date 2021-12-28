@@ -1,5 +1,8 @@
 package com.bridgelabz.employeepayrollapp.dto;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+
 public class EmployeePayRollDTO {
 
 
