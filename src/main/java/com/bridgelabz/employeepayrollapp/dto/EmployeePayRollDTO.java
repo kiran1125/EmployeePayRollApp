@@ -12,7 +12,6 @@ import javax.validation.constraints.Pattern;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
-import lombok.NonNull;
 
 public @Data class EmployeePayRollDTO {
 
