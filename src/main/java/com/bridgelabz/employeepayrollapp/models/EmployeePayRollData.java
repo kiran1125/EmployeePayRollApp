@@ -60,4 +60,13 @@ public @Data class EmployeePayRollData {
         this.departments = employeePayRollDTO.getDepartments();
     }
     public EmployeePayRollData() {}
+    public void updateEmployeeData(EmployeePayRollDTO employeePayRollDTO) {
+        this.name = employeePayRollDTO.getName();
+        this.salary = employeePayRollDTO.getSalary();
+        this.gender = employeePayRollDTO.getGender();
+        this.startDate = employeePayRollDTO.getStartDate();
+        this.note = employeePayRollDTO.getNote();
+        this.profilePic = employeePayRollDTO.getProfilePic();
+        this.departments = employeePayRollDTO.getDepartments();
+    }
 }

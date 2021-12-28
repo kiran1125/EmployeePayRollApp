@@ -327,3 +327,128 @@ Caused by: java.time.format.DateTimeParseException: Text '28 12 2021' could not 
 2021-12-28 18:08:36.512  INFO 16824 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Employee Payroll DB User is payrolluser Environment
 2021-12-28 18:08:53.451 DEBUG 16824 --- [http-nio-8080-exec-2] c.b.e.c.EmployeePayRollController        : EmployeeDTO : EmployeePayRollDTO(name=Karthik, salary=30000, gender=male, startDate=2021-12-28, note=Save, profilePic=something, departments=[HR, Sales])
 2021-12-28 18:08:53.453 DEBUG 16824 --- [http-nio-8080-exec-2] c.b.e.services.EmployeePayRollService    : Employee Data : EmployeePayRollData(employeeId=0, name=Karthik, salary=30000, gender=male, startDate=2021-12-28, note=Save, profilePic=something, departments=[HR, Sales])
+2021-12-28 21:52:25.011  INFO 35744 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Starting EmployeePayRollAppApplication using Java 17.0.1 on Kiran with PID 35744 (E:\Spring\EmployeePayRollApp\target\classes started by Ki ran in E:\Spring\EmployeePayRollApp)
+2021-12-28 21:52:25.016 DEBUG 35744 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Running with Spring Boot v2.6.2, Spring v5.3.14
+2021-12-28 21:52:25.019  INFO 35744 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : The following profiles are active: DEV
+2021-12-28 21:52:33.874  WARN 35744 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'employeePayRollController': Unsatisfied dependency expressed through field 'employeePayRollServices'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'employeePayRollService' defined in file [E:\Spring\EmployeePayRollApp\target\classes\com\bridgelabz\employeepayrollapp\services\EmployeePayRollService.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.bridgelabz.employeepayrollapp.services.EmployeePayRollService]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The import com.bridgelabz.employeepayrollapp.exceptions.EmployeePayRollException cannot be resolved
+	The method orElseThrow(Supplier<? extends X>) in the type Optional<EmployeePayRollData> is not applicable for the arguments (() -> {})
+	EmployeePayRollException cannot be resolved to a type
+
+2021-12-28 21:52:34.127 ERROR 35744 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'employeePayRollController': Unsatisfied dependency expressed through field 'employeePayRollServices'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'employeePayRollService' defined in file [E:\Spring\EmployeePayRollApp\target\classes\com\bridgelabz\employeepayrollapp\services\EmployeePayRollService.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.bridgelabz.employeepayrollapp.services.EmployeePayRollService]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The import com.bridgelabz.employeepayrollapp.exceptions.EmployeePayRollException cannot be resolved
+	The method orElseThrow(Supplier<? extends X>) in the type Optional<EmployeePayRollData> is not applicable for the arguments (() -> {})
+	EmployeePayRollException cannot be resolved to a type
+
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:659) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:639) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:953) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918) ~[spring-context-5.3.14.jar:5.3.14]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.14.jar:5.3.14]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145) ~[spring-boot-2.6.2.jar:2.6.2]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:730) ~[spring-boot-2.6.2.jar:2.6.2]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:412) ~[spring-boot-2.6.2.jar:2.6.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302) ~[spring-boot-2.6.2.jar:2.6.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301) ~[spring-boot-2.6.2.jar:2.6.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290) ~[spring-boot-2.6.2.jar:2.6.2]
+	at com.bridgelabz.employeepayrollapp.EmployeePayRollAppApplication.main(EmployeePayRollAppApplication.java:14) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.6.2.jar:2.6.2]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'employeePayRollService' defined in file [E:\Spring\EmployeePayRollApp\target\classes\com\bridgelabz\employeepayrollapp\services\EmployeePayRollService.class]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.bridgelabz.employeepayrollapp.services.EmployeePayRollService]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The import com.bridgelabz.employeepayrollapp.exceptions.EmployeePayRollException cannot be resolved
+	The method orElseThrow(Supplier<? extends X>) in the type Optional<EmployeePayRollData> is not applicable for the arguments (() -> {})
+	EmployeePayRollException cannot be resolved to a type
+
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1334) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:656) ~[spring-beans-5.3.14.jar:5.3.14]
+	... 25 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.bridgelabz.employeepayrollapp.services.EmployeePayRollService]: Constructor threw exception; nested exception is java.lang.Error: Unresolved compilation problems: 
+	The import com.bridgelabz.employeepayrollapp.exceptions.EmployeePayRollException cannot be resolved
+	The method orElseThrow(Supplier<? extends X>) in the type Optional<EmployeePayRollData> is not applicable for the arguments (() -> {})
+	EmployeePayRollException cannot be resolved to a type
+
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:224) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:87) ~[spring-beans-5.3.14.jar:5.3.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateBean(AbstractAutowireCapableBeanFactory.java:1326) ~[spring-beans-5.3.14.jar:5.3.14]
+	... 36 common frames omitted
+Caused by: java.lang.Error: Unresolved compilation problems: 
+	The import com.bridgelabz.employeepayrollapp.exceptions.EmployeePayRollException cannot be resolved
+	The method orElseThrow(Supplier<? extends X>) in the type Optional<EmployeePayRollData> is not applicable for the arguments (() -> {})
+	EmployeePayRollException cannot be resolved to a type
+
+	at com.bridgelabz.employeepayrollapp.services.EmployeePayRollService.<init>(EmployeePayRollService.java:7) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Unknown Source) ~[na:na]
+	at java.base/java.lang.reflect.Constructor.newInstance(Unknown Source) ~[na:na]
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:211) ~[spring-beans-5.3.14.jar:5.3.14]
+	... 38 common frames omitted
+
+2021-12-28 22:07:28.757  INFO 40728 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Starting EmployeePayRollAppApplication using Java 17.0.1 on Kiran with PID 40728 (E:\Spring\EmployeePayRollApp\target\classes started by Ki ran in E:\Spring\EmployeePayRollApp)
+2021-12-28 22:07:28.850 DEBUG 40728 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Running with Spring Boot v2.6.2, Spring v5.3.14
+2021-12-28 22:07:28.851  INFO 40728 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : The following profiles are active: DEV
+2021-12-28 22:07:29.757  INFO 26080 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Starting EmployeePayRollAppApplication using Java 17.0.1 on Kiran with PID 26080 (E:\Spring\EmployeePayRollApp\target\classes started by Ki ran in E:\Spring\EmployeePayRollApp)
+2021-12-28 22:07:29.776 DEBUG 26080 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Running with Spring Boot v2.6.2, Spring v5.3.14
+2021-12-28 22:07:29.789  INFO 26080 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : The following profiles are active: DEV
+2021-12-28 22:07:48.069  WARN 26080 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-28 22:07:48.135  WARN 40728 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-28 22:07:51.572  WARN 40728 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2021-12-28 22:07:51.660  WARN 40728 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
+2021-12-28 22:07:51.901  INFO 26080 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Started EmployeePayRollAppApplication in 24.477 seconds (JVM running for 26.13)
+2021-12-28 22:07:51.912  INFO 26080 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Employee Payroll App Started in DEV Environment
+2021-12-28 22:07:51.931  INFO 26080 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Employee Payroll DB User is payrolluser Environment
+2021-12-28 22:07:51.979 ERROR 40728 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2021-12-28 22:08:12.323  INFO 40444 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Starting EmployeePayRollAppApplication using Java 17.0.1 on Kiran with PID 40444 (E:\Spring\EmployeePayRollApp\target\classes started by Ki ran in E:\Spring\EmployeePayRollApp)
+2021-12-28 22:08:12.346 DEBUG 40444 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Running with Spring Boot v2.6.2, Spring v5.3.14
+2021-12-28 22:08:12.348  INFO 40444 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : The following profiles are active: DEV
+2021-12-28 22:08:20.462  WARN 40444 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-28 22:08:21.207  INFO 40444 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Started EmployeePayRollAppApplication in 9.763 seconds (JVM running for 10.747)
+2021-12-28 22:08:21.219  INFO 40444 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Employee Payroll App Started in DEV Environment
+2021-12-28 22:08:21.224  INFO 40444 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Employee Payroll DB User is payrolluser Environment
+2021-12-28 22:10:15.376 DEBUG 40444 --- [http-nio-8080-exec-3] c.b.e.c.EmployeePayRollController        : EmployeeDTO : EmployeePayRollDTO(name=Kiran, salary=30000, gender=male, startDate=2021-12-28, note=Save, profilePic=something, departments=[HR, Sales])
+2021-12-28 22:10:15.378 DEBUG 40444 --- [http-nio-8080-exec-3] c.b.e.services.EmployeePayRollService    : Employee Data : EmployeePayRollData(employeeId=0, name=Kiran, salary=30000, gender=male, startDate=2021-12-28, note=Save, profilePic=something, departments=[HR, Sales])
+2021-12-28 22:11:29.199  INFO 40444 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Starting EmployeePayRollAppApplication using Java 17.0.1 on Kiran with PID 40444 (E:\Spring\EmployeePayRollApp\target\classes started by Ki ran in E:\Spring\EmployeePayRollApp)
+2021-12-28 22:11:29.201 DEBUG 40444 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Running with Spring Boot v2.6.2, Spring v5.3.14
+2021-12-28 22:11:29.213  INFO 40444 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : The following profiles are active: DEV
+2021-12-28 22:11:31.806  WARN 40444 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-28 22:11:32.085  INFO 40444 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Started EmployeePayRollAppApplication in 3.617 seconds (JVM running for 201.626)
+2021-12-28 22:11:32.097  INFO 40444 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Employee Payroll App Started in DEV Environment
+2021-12-28 22:11:32.100  INFO 40444 --- [restartedMain] c.b.e.EmployeePayRollAppApplication      : Employee Payroll DB User is payrolluser Environment
