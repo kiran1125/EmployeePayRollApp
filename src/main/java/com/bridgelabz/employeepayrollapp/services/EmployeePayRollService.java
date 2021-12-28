@@ -1,6 +1,5 @@
 package com.bridgelabz.employeepayrollapp.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.bridgelabz.employeepayrollapp.dto.EmployeePayRollDTO;
@@ -50,6 +49,10 @@ public class EmployeePayRollService implements IEmployeePayRollServices{
     public EmployeePayRollData getEmployeeDataById(int id) {
         return employeePayRollRepository.findById(id).orElseThrow(() 
                     -> new EmployeePayRollException("Employee Not Found"));
+    }
+    @Override
+    public List<EmployeePayRollData> getEmployeesPayRollDataByDepartment(String department) {
+        return employeePayRollRepository.findEmployeesByDepartment(department);
     }
     
 }
