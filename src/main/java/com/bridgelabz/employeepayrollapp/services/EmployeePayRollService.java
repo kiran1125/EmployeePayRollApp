@@ -35,14 +35,14 @@ public class EmployeePayRollService implements IEmployeePayRollServices{
 
     @Override
     public void deleteEmployeeData(int id) {
-        empDataList.remove(id);
+        empDataList.remove(id - 1);
     }
 
 
     @Override
     public EmployeePayRollData getEmployeeDataById(int id) {
         return empDataList.stream().filter
-        (empData -> empData.getEmployeeId()== id).findFirst().orElseThrow(() 
+        (empData -> empData.getEmployeeId()== (id)).findFirst().orElseThrow(() 
         -> new EmployeePayRollException("Employee Not Found"));
     }
     

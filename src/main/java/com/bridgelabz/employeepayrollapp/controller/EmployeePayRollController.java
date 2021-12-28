@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.List;
 
 import javax.validation.Valid;
@@ -31,6 +33,7 @@ import com.bridgelabz.employeepayrollapp.services.IEmployeePayRollServices;
  */
 @RestController
 @RequestMapping("/employeepayroll")
+@Slf4j
 public class EmployeePayRollController {
 
 	@Autowired
@@ -70,6 +73,7 @@ public class EmployeePayRollController {
 	 */
 	@PostMapping("/post")
 	public ResponseEntity<ResponseDTO> addEmployeePayRollData(@Valid @RequestBody EmployeePayRollDTO emp){
+		log.debug("EmployeeDTO : " + emp.toString());
 		EmployeePayRollData empData = null;
 		empData = employeePayRollServices.addEmployeeData(emp);
 		ResponseDTO responseDTO = new ResponseDTO("post data is Successful", empData);
