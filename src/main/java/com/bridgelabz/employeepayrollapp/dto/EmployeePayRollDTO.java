@@ -38,5 +38,7 @@ public @Data class EmployeePayRollDTO {
 
 	@NotNull(message = "departments should not be blank")
 	private List<String> departments;
+	private String emailId;
+    private String password; 
 
 }

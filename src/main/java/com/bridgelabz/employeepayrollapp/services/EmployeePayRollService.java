@@ -3,10 +3,15 @@ package com.bridgelabz.employeepayrollapp.services;
 import java.util.List;
 
 import com.bridgelabz.employeepayrollapp.dto.EmployeePayRollDTO;
+import com.bridgelabz.employeepayrollapp.dto.UserDetailsDTO;
 import com.bridgelabz.employeepayrollapp.exceptions.EmployeePayRollException;
+import com.bridgelabz.employeepayrollapp.exceptions.EmployeeRegisterException;
 import com.bridgelabz.employeepayrollapp.models.EmployeePayRollData;
 import com.bridgelabz.employeepayrollapp.repository.EmployeePayRollRepository;
-
+import com.bridgelabz.employeepayrollapp.util.Response;
+import com.bridgelabz.employeepayrollapp.util.TokenUtil;
+import org.modelmapper.ModelMapper;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +24,23 @@ public class EmployeePayRollService implements IEmployeePayRollServices{
     @Autowired
     private EmployeePayRollRepository employeePayRollRepository;
 
+    @Autowired
+    ModelMapper modelMapper;
+
+    @Autowired
+    TokenUtil tokenUtil;
+    
     @Override
-    public List<EmployeePayRollData> getEmployeeData() {
-        return employeePayRollRepository.findAll();
+    public List<EmployeePayRollData> getEmployeeData(String token) {
+        Long id=tokenUtil.decodeToken(token);
+        Optional<EmployeePayRollData> emp = employeePayRollRepository.findById(id); 
+        if(emp.isPresent()){
+            return employeePayRollRepository.findAll();
+        }
+        else{
+            throw new EmployeeRegisterException(400, "Token is not valid!!");
+        }
+        
     }
     @Override
     public EmployeePayRollData addEmployeeData(EmployeePayRollDTO emp) {
@@ -32,27 +51,63 @@ public class EmployeePayRollService implements IEmployeePayRollServices{
     }
 
     @Override
-    public EmployeePayRollData updateEmployeeData(int id ,EmployeePayRollDTO employeePayRollDTO) {
-        EmployeePayRollData empData = this.getEmployeeDataById(id);
+    public EmployeePayRollData updateEmployeeData(String token ,EmployeePayRollDTO employeePayRollDTO) {
+        EmployeePayRollData empData = this.getEmployeeDataById(token);
         empData.updateEmployeeData(employeePayRollDTO);
         return employeePayRollRepository.save(empData);
+        
     }
 
     @Override
-    public void deleteEmployeeData(int id) {
-        EmployeePayRollData empData = this.getEmployeeDataById(id);
+    public void deleteEmployeeData(String token) {
+        EmployeePayRollData empData = this.getEmployeeDataById(token);
         employeePayRollRepository.delete(empData);
     }
 
 
     @Override
-    public EmployeePayRollData getEmployeeDataById(int id) {
+    public EmployeePayRollData getEmployeeDataById(String token) {
+        Long id=tokenUtil.decodeToken(token);
+        Optional<EmployeePayRollData> emp = employeePayRollRepository.findById(id); 
+        if(emp.isPresent()){
         return employeePayRollRepository.findById(id).orElseThrow(() 
                     -> new EmployeePayRollException("Employee Not Found"));
+        }
+        else{
+            throw new EmployeeRegisterException(400, "Token is not valid!!");
+        }
+    }
+    // @Override
+    // public List<EmployeePayRollData> getEmployeesPayRollDataByDepartment(String department) {
+    //     return employeePayRollRepository.findEmployeesByDepartment(department);
+    // }
+    @Override
+    public Response createContact(EmployeePayRollDTO userDetailsDTO) {
+        Optional<EmployeePayRollData> isPresent=employeePayRollRepository.findByEmailId(userDetailsDTO.getEmailId());
+		if(isPresent.isPresent()) {
+			throw new EmployeeRegisterException(400, "Employee Already Added");
+		}else {
+			EmployeePayRollData employeePayRollData=modelMapper.map(userDetailsDTO, EmployeePayRollData.class);
+			employeePayRollRepository.save(employeePayRollData);
+			String token=tokenUtil.createToken(employeePayRollData.getEmployeeId());
+			return new Response(200, "Employee Succefully Added", token);
+		}
     }
     @Override
-    public List<EmployeePayRollData> getEmployeesPayRollDataByDepartment(String department) {
-        return employeePayRollRepository.findEmployeesByDepartment(department);
+    public Response loginDetails(UserDetailsDTO userDetailsDTO) {
+        Optional<EmployeePayRollData> emp=employeePayRollRepository.findByEmailId(userDetailsDTO.getEmailId());
+        if(emp.isPresent()){
+            String empData = emp.get().getPassword();
+            if(empData.equals(userDetailsDTO.getPassword())){
+                String token=tokenUtil.createToken(emp.get().getEmployeeId());
+                return new Response(200, "Employee Login Successful", token);
+            }else{
+                return new Response(404, "Password Wrong");
+            }
+        }else{
+            return new Response(400, "Login Failed");
+        }
+        
     }
     
 }

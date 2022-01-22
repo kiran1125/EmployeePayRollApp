@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.bridgelabz.employeepayrollapp.dto.ResponseDTO;
+import com.bridgelabz.employeepayrollapp.util.Response;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,4 +39,14 @@ public class EmployeePayRollExceptionHandler extends RuntimeException {
 		ResponseDTO responseDTO = new ResponseDTO("Exception while processing REST Request ", "Date format should be dd-MM-yyyy");
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.BAD_REQUEST);
 	}
+
+	@ExceptionHandler(EmployeeRegisterException.class)
+	public ResponseEntity<Response> handleEmployeeRegisterException(EmployeeRegisterException e){
+		log.error(e.getMessage(), e);
+		EmployeeRegisterException emp = new EmployeeRegisterException(100, e.getMessage());
+		return new ResponseEntity<>(emp.getErrorResponse(), HttpStatus.INTERNAL_SERVER_ERROR);
+
+	}
+
+	
 }

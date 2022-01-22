@@ -15,16 +15,18 @@ import javax.persistence.Table;
 
 import com.bridgelabz.employeepayrollapp.dto.EmployeePayRollDTO;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Entity
 @Table(name = "employee_payroll")
+@AllArgsConstructor
 public @Data class EmployeePayRollData {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "employee_id")
-    private int employeeId;
+    private Long employeeId;
 
     @Column
     private String name;
@@ -48,6 +50,8 @@ public @Data class EmployeePayRollData {
     @CollectionTable(name = "employee_department" , joinColumns = @JoinColumn(name = "id"))
     @Column(name = "department")
 	private List<String> departments;
+    private String emailId;
+    private String password; 
 
 
     public EmployeePayRollData(EmployeePayRollDTO employeePayRollDTO) {
@@ -58,6 +62,9 @@ public @Data class EmployeePayRollData {
         this.note = employeePayRollDTO.getNote();
         this.profilePic = employeePayRollDTO.getProfilePic();
         this.departments = employeePayRollDTO.getDepartments();
+        this.emailId  = employeePayRollDTO.getEmailId();
+        this.password = employeePayRollDTO.getPassword();
+        
     }
     public EmployeePayRollData() {}
     public void updateEmployeeData(EmployeePayRollDTO employeePayRollDTO) {
@@ -68,5 +75,7 @@ public @Data class EmployeePayRollData {
         this.note = employeePayRollDTO.getNote();
         this.profilePic = employeePayRollDTO.getProfilePic();
         this.departments = employeePayRollDTO.getDepartments();
+        this.emailId  = employeePayRollDTO.getEmailId();
+        this.password = employeePayRollDTO.getPassword();
     }
 }
