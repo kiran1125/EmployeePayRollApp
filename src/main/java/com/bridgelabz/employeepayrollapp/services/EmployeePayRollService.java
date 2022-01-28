@@ -31,15 +31,9 @@ public class EmployeePayRollService implements IEmployeePayRollServices{
     TokenUtil tokenUtil;
     
     @Override
-    public List<EmployeePayRollData> getEmployeeData(String token) {
-        Long id=tokenUtil.decodeToken(token);
-        Optional<EmployeePayRollData> emp = employeePayRollRepository.findById(id); 
-        if(emp.isPresent()){
-            return employeePayRollRepository.findAll();
-        }
-        else{
-            throw new EmployeeRegisterException(400, "Token is not valid!!");
-        }
+    public List<EmployeePayRollData> getEmployeeData() {
+        
+        return employeePayRollRepository.findAll();
         
     }
     @Override
@@ -51,31 +45,26 @@ public class EmployeePayRollService implements IEmployeePayRollServices{
     }
 
     @Override
-    public EmployeePayRollData updateEmployeeData(String token ,EmployeePayRollDTO employeePayRollDTO) {
-        EmployeePayRollData empData = this.getEmployeeDataById(token);
+    public EmployeePayRollData updateEmployeeData(Long id ,EmployeePayRollDTO employeePayRollDTO) {
+        EmployeePayRollData empData = this.getEmployeeDataById(id);
         empData.updateEmployeeData(employeePayRollDTO);
         return employeePayRollRepository.save(empData);
         
     }
 
     @Override
-    public void deleteEmployeeData(String token) {
-        EmployeePayRollData empData = this.getEmployeeDataById(token);
+    public void deleteEmployeeData(Long id) {
+        EmployeePayRollData empData = this.getEmployeeDataById(id);
         employeePayRollRepository.delete(empData);
     }
 
 
     @Override
-    public EmployeePayRollData getEmployeeDataById(String token) {
-        Long id=tokenUtil.decodeToken(token);
-        Optional<EmployeePayRollData> emp = employeePayRollRepository.findById(id); 
-        if(emp.isPresent()){
+    public EmployeePayRollData getEmployeeDataById(Long id) {
+        
         return employeePayRollRepository.findById(id).orElseThrow(() 
                     -> new EmployeePayRollException("Employee Not Found"));
-        }
-        else{
-            throw new EmployeeRegisterException(400, "Token is not valid!!");
-        }
+        
     }
     // @Override
     // public List<EmployeePayRollData> getEmployeesPayRollDataByDepartment(String department) {

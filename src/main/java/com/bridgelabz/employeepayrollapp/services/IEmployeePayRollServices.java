@@ -9,15 +9,15 @@ import com.bridgelabz.employeepayrollapp.util.Response;
 
 public interface IEmployeePayRollServices {
 
-    List<EmployeePayRollData> getEmployeeData(String token);
+    List<EmployeePayRollData> getEmployeeData();
 
-    EmployeePayRollData getEmployeeDataById(String token);
+    EmployeePayRollData getEmployeeDataById(Long id);
 
     EmployeePayRollData addEmployeeData(EmployeePayRollDTO emp);
 
-    EmployeePayRollData updateEmployeeData(String token ,EmployeePayRollDTO emp);
+    EmployeePayRollData updateEmployeeData(Long id ,EmployeePayRollDTO emp);
 
-    void deleteEmployeeData(String token);
+    void deleteEmployeeData(Long id);
 
     //List<EmployeePayRollData> getEmployeesPayRollDataByDepartment(String department);
 

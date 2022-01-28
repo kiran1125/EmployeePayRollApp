@@ -22,13 +22,13 @@ public @Data class EmployeePayRollDTO {
 	@Min(value = 500, message = "Min wage is not more than 500")
 	private long salary;
 	
-	@Pattern(regexp = "male|female", message = "Employee should be male or female")
+	//@Pattern(regexp = "male|female", message = "Employee should be male or female")
 	private String gender;
 
-	@JsonFormat(pattern = "dd-MM-yyyy")
-	@NotNull (message = "startDate Should not be Empty")
-	@PastOrPresent(message = "Date should be present or past")
-	private LocalDate startDate;
+	//@JsonFormat(pattern = "dd-MM-yyyy")
+	//@NotNull (message = "startDate Should not be Empty")
+	//@PastOrPresent(message = "Date should be present or past")
+	//private String startDate;
 
 	@NotBlank(message = "note should not be blank")
 	private String note;
@@ -36,8 +36,8 @@ public @Data class EmployeePayRollDTO {
 	@NotBlank(message = "pic should not be blank")
 	private String profilePic;
 
-	@NotNull(message = "departments should not be blank")
-	private List<String> departments;
+	//@NotNull(message = "departments should not be blank")
+	private List<String> department;
 	private String emailId;
     private String password; 
 

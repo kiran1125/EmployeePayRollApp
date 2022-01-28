@@ -37,8 +37,8 @@ public @Data class EmployeePayRollData {
     @Column
     private String gender;
 
-    @Column(name = "start_date")
-	private LocalDate startDate;
+    // @Column(name = "start_date")
+	// private String startDate;
 
     @Column
 	private String note;
@@ -49,7 +49,7 @@ public @Data class EmployeePayRollData {
     @ElementCollection
     @CollectionTable(name = "employee_department" , joinColumns = @JoinColumn(name = "id"))
     @Column(name = "department")
-	private List<String> departments;
+	private List<String> department;
     private String emailId;
     private String password; 
 
@@ -58,10 +58,10 @@ public @Data class EmployeePayRollData {
         this.name = employeePayRollDTO.getName();
         this.salary = employeePayRollDTO.getSalary();
         this.gender = employeePayRollDTO.getGender();
-        this.startDate = employeePayRollDTO.getStartDate();
+        // this.startDate = employeePayRollDTO.getStartDate();
         this.note = employeePayRollDTO.getNote();
         this.profilePic = employeePayRollDTO.getProfilePic();
-        this.departments = employeePayRollDTO.getDepartments();
+        this.department = employeePayRollDTO.getDepartment();
         this.emailId  = employeePayRollDTO.getEmailId();
         this.password = employeePayRollDTO.getPassword();
         
@@ -71,10 +71,10 @@ public @Data class EmployeePayRollData {
         this.name = employeePayRollDTO.getName();
         this.salary = employeePayRollDTO.getSalary();
         this.gender = employeePayRollDTO.getGender();
-        this.startDate = employeePayRollDTO.getStartDate();
+        // this.startDate = employeePayRollDTO.getStartDate();
         this.note = employeePayRollDTO.getNote();
         this.profilePic = employeePayRollDTO.getProfilePic();
-        this.departments = employeePayRollDTO.getDepartments();
+        this.department = employeePayRollDTO.getDepartment();
         this.emailId  = employeePayRollDTO.getEmailId();
         this.password = employeePayRollDTO.getPassword();
     }

@@ -3,6 +3,7 @@ package com.bridgelabz.employeepayrollapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,7 @@ import com.bridgelabz.employeepayrollapp.util.Response;
  * @since 2021-12-23
  *
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/employeepayroll")
 @Slf4j
@@ -61,10 +63,10 @@ public class EmployeePayRollController {
 	}
 
 	
-	@GetMapping("/get/{token}")
-	public ResponseEntity<ResponseDTO> employeePayRoll(@PathVariable ("token") String token){
+	@GetMapping("/get")
+	public ResponseEntity<ResponseDTO> employeePayRoll(){
 		List<EmployeePayRollData> empDataList = null;
-		empDataList = employeePayRollServices.getEmployeeData(token);
+		empDataList = employeePayRollServices.getEmployeeData();
 		ResponseDTO responseDTO = new ResponseDTO("Get call Successful", empDataList);
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
 	}
@@ -75,10 +77,10 @@ public class EmployeePayRollController {
 	 * @param id it is the parameter that we pass as an path variable
 	 * @return Response : with a String + empdata and OK status
 	 */
-	@GetMapping("/get/id/{token}")
-	public ResponseEntity<ResponseDTO> employeePayRollById(@PathVariable ("token") String token){
+	@GetMapping("/get/{id}")
+	public ResponseEntity<ResponseDTO> employeePayRollById(@PathVariable ("id") Long id){
 		EmployeePayRollData empData = null;
-		empData = employeePayRollServices.getEmployeeDataById(token);
+		empData = employeePayRollServices.getEmployeeDataById(id);
 		ResponseDTO responseDTO = new ResponseDTO("Get call for id Successful", empData);
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
 	}
@@ -103,10 +105,10 @@ public class EmployeePayRollController {
 	 * @param emp it is the parameter that we pass as an body
 	 * @return Response : with a String + emp and OK status
 	 */
-	@PutMapping("/put/{token}")
-	public ResponseEntity<ResponseDTO> updatingEmployeePayRollData(@PathVariable("token") String token, @Valid @RequestBody EmployeePayRollDTO emp){
+	@PutMapping("/put/{id}")
+	public ResponseEntity<ResponseDTO> updatingEmployeePayRollData(@PathVariable("id") Long id, @Valid @RequestBody EmployeePayRollDTO emp){
 		EmployeePayRollData empData = null;
-		empData = employeePayRollServices.updateEmployeeData(token,emp);
+		empData = employeePayRollServices.updateEmployeeData(id,emp);
 		ResponseDTO responseDTO = new ResponseDTO("put or update data is Successful", empData);
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
 	}
@@ -116,10 +118,10 @@ public class EmployeePayRollController {
 	 * @param id it is the parameter that we pass as an body
 	 * @return Response : with a String + id and OK status
 	 */
-	@DeleteMapping("/delete/{token}")
-	public ResponseEntity<ResponseDTO> deleteEmployeePayRollById(@PathVariable ("token") String token){
-		employeePayRollServices.deleteEmployeeData(token);
-		ResponseDTO responseDTO = new ResponseDTO("delete data is Successful of token :", token);
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<ResponseDTO> deleteEmployeePayRollById(@PathVariable Long id){
+		employeePayRollServices.deleteEmployeeData(id);
+		ResponseDTO responseDTO = new ResponseDTO("delete data is Successful of token :", id);
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
 	}
 	// @GetMapping("/department/{department}")
